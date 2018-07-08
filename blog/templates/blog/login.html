@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% block main_content %}
+
+                
+            <div class="parallax1" style="font-family: cursive">
+                  <div class="container" style="font-size: 5em ; color: white ; ">
+                    gestión de eventos<br> <div style="font-size: .5em">events @ nitk  </div>
+                   </div>
+                </div>
+        
+      <div class="container">
+<h1 style="font-family: cursive; margin-left: 10em;">  Login Here! </h1><br>
+<form class="form-horizontal" action="{% url "blog:user_login" %}" method="POST">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="username">username:</label>
+        <div class="col-sm-10">
+     <input type="text" class="form-control" name="username" placeholder="Enter username" >
+        </div>
+    </div>
+  
+    <div class="form-group">
+       <label class="control-label col-sm-2"  for="password">Password:</label>
+     <div class="col-sm-10">
+       <input class="form-control" type="password" name="password" placeholder="Enter Password">
+   </div>
+    </div>
+    <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                        <label><input type="checkbox" name="remember"> Remember me</label>
+                    </div>
+                  </div>
+                </div>
+     <div class="form-group">       
+        <div class="col-sm-offset-2 col-sm-10">
+     <input type="submit" name=""   class="btn btn-default" value="Login">
+        </div>
+     </div>
+    
+    </form>
+      </div>
+        </div>
+        {% endblock %}
+      
