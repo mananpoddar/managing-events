@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from blog.models import input
-
+from datetime import datetime
      
 ...
         
@@ -18,7 +18,8 @@ def main_page(request):
     qs = sorted(qs,key=lambda x:x.date,reverse=False)
     if request.method=="POST":
          mydate=request.POST["date"]
-         qs = sorted(qs,key=lambda x:x.date,reverse=False)
+         qs = input.objects.filter(date=mydate)
+         qs = sorted(qs,key=lambda x:x.time,reverse=False)
 
          return render(request,"blog/index_page.html",{"qs":qs,"mydate":mydate})
 
@@ -39,7 +40,7 @@ def form_name_view(request):
 
         if form.is_valid():
             form.save()
-            return index(request,form)
+            return HttpResponse("successfully submitted !" )
             
         else:
             print("error")    
