@@ -35,17 +35,17 @@ def user_logout(request):
 
 @login_required
 def form_name_view(request):
-    forme=AuthorForm()
+    form=AuthorForm()
     if request.method=="POST":
-        forme=AuthorForm(request.POST)
+        form=AuthorForm(request.POST)
 
-        if forme.is_valid():
-            forme.save()
+        if form.is_valid():
+            form.save()
             return HttpResponse("successfully submitted !" )
             
         else:
             print("error")    
-    return render(request,"blog/form_page.html",{"forme":forme })        
+    return render(request,"blog/form_page.html",{"form":form })        
 
 def authentication_view(request):
     registered = False

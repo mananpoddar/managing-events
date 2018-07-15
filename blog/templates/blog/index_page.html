@@ -42,6 +42,14 @@
     background-size:150em;
     width: 100%;
 }
+.footer{
+    background-color:lightgrey;
+    height:3em;
+    font-size: 2em;
+    font-family: cursive;
+    text-align: center;
+    
+}
 </style>
     </head>
     <body>
@@ -87,7 +95,7 @@
                         </div>
      
   
-            <div class="col-sm-8">
+            <div class="col-sm-8" >
                        <!--logo-->
                        <div class="row">
                             <div class="col-sm-4">
@@ -108,7 +116,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>                        
                                   </button>
-                        <a href="#!" onclick="callaboutme()"class="navbar-brand">EVENTS @ NITK</a>  
+                        <a href="http://127.0.0.1:8000/polls/main_page/" onclick="callaboutme()"class="navbar-brand">EVENTS @ NITK</a>  
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
@@ -153,31 +161,41 @@ $(function () {
                                <div class="form-row">
                                    <input type="date" class="hide-replaced" name="date" />
                                </div>
+                               <br>
                                <div class="form-row">
-                                   <input type="submit" />
+                                   <input class="btn btn-primary" type="submit" />
                                </div>
                            </form>
-       
-       {% if qs %}
+          <br>
+                        {% if qs %}
+                        {% for items in qs %}
+                           <div class="container" style="font-family: cursive">
+                            <div class="col-md-8" style="background-color: lightgrey;
+                            border: 1px solid #000000;
+                            border-radius: 1%;">
+                                DATE: {{items.date}}<br>
+                               TIME:{{items.time}}<br>
+                               EVENT:   {{items.event_description}}<br>
+                               VENUE:    {{items.venue}}<br>
+                               </div>
+                               <br>
+                               <br>
+                    </div>
+                    <br>
+                        
+                    {% endfor %}
 
-       {% for items in qs %}
-       <div class="container" style="font-family: cursive">
-                <div class="card bg-primary">
-                        DATE: {{items.date}}<br>
-           TIME:{{items.time}}</br>
-           EVENT:   {{items.event_description}}<br>
-           VENUE:    {{items.venue}}<br>
-           <br>
-    </div>
-</div>
-<br>
-{% endfor %}
+                    {% else %}
+                        <div style="font-family: cursive">There's no Event scheduled for the day, enjoy in your room.</div>
+                        {% endif %}
+                        <br>
 
-        {% else %}
          
-        <div style="font-family: cursive ; font-size: 3em;" >Enjoy In Your Rooms, There Is No Event Scheduled For The Day!</div>
-{% endif %}
+       
    </div>
 </div>
+</div>
+<div class="footer"><div style="margin-top: 1em;">&copy;Saurabh Agarwala and Manan Poddar</div></div> 
+
     </body>
 </html>
