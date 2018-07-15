@@ -17,7 +17,7 @@ def main_page(request):
     qs = input.objects.all()
     qs = sorted(qs,key=lambda x:x.date,reverse=False)
     if request.method=="POST":
-         mydate=request.POST["date"]
+         mydate=request.POST.get("date",)
          qs = input.objects.filter(date=mydate)
          qs = sorted(qs,key=lambda x:x.time,reverse=False)
 
@@ -30,21 +30,21 @@ def main_page(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse("index"))
+    return HttpResponseRedirect(reverse("main_page"))
 
 @login_required
 def form_name_view(request):
-    form=AuthorForm()
+    forme=AuthorForm()
     if request.method=="POST":
-        form=AuthorForm(request.POST)
+        forme=AuthorForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+        if forme.is_valid():
+            forme.save()
             return HttpResponse("successfully submitted !" )
             
         else:
             print("error")    
-    return render(request,"blog/form_page.html",{"form":form })        
+    return render(request,"blog/form_page.html",{"forme":forme })        
 
 def authentication_view(request):
     registered = False
@@ -64,7 +64,7 @@ def authentication_view(request):
          print("error")
     else:
         auth=Authentic()     
-    return render(request,"blog/user.html",{"auth":auth,"registered":registered })        
+    return render(request,"blog/signup.html",{"auth":auth,"registered":registered })        
 
 
 def user_login(request):
