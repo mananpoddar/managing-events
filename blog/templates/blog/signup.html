@@ -79,11 +79,16 @@
 {% load widget_tweaks %}
 
 {% if registered %}
-<h1> thankyou for registering</h1>
-<a href="http://127.0.0.1:8000/polls/user_login/" >LOGIN</a>    
+
+<div class="container">
+    <div style="text-align: center">
+       <h1 style="margin-top: 4em;"> SUCCESSFULLY REGISTERED!<h1>
+    <a href="http://127.0.0.1:8000/polls/main_page/" type="button" class="btn btn-primary"  > Go to Main Page!</a>
+</div>
+
 {% else %}
 <div class="container">
-    <h1>sign up! </h1><BR>
+    <h1>Sign Up! </h1><BR>
 <form method="POST" nonvalidate action="/polls/signup/" enctype="multipart/form-data">{% csrf_token %}
   {% csrf_token %}
 

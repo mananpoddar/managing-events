@@ -41,7 +41,7 @@ def form_name_view(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponse("successfully submitted !" )
+            return render(request,"blog/ss.html",{"form":form }) 
             
         else:
             print("error")    
