@@ -20,8 +20,9 @@ def main_page(request):
          mydate=request.POST.get("date",)
          qs = input.objects.filter(date=mydate)
          qs = sorted(qs,key=lambda x:x.time,reverse=False)
-
          return render(request,"blog/index_page.html",{"qs":qs,"mydate":mydate})
+
+        
 
 
     else:
